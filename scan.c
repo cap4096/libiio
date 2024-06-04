@@ -44,7 +44,9 @@ ssize_t iio_scan_context_get_info_list(struct iio_scan_context *ctx,
 
 		/* Since tokens are all null terminated, it's safe to use strcmp on them */
 		if (WITH_LOCAL_BACKEND && !strcmp(token, "local")) {
+#if WITH_LOCAL_BACKEND
 			ret = local_context_scan(&scan_result);
+#endif
 		} else if (WITH_USB_BACKEND && (!strcmp(token, "usb") ||
 						!strncmp(token, "usb=", sizeof("usb=") - 1))) {
 			token = token[3] == '=' ? token + 4 : NULL;
